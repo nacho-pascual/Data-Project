@@ -151,8 +151,3 @@ for i in range(len(df_cargadores)):
   record_to_insert = (df_cargadores['datasetid'][i],df_cargadores['fields.distrito'][i])
   cursor.execute(postgres_insert_query, record_to_insert)
 connection.commit()
-
-
-
-
-
