@@ -30,7 +30,6 @@ datos_espaciosverdes=respuesta.json()
 
 df_espacios_verdes = pd.json_normalize(datos_espaciosverdes)
 
-print(df_espacios_verdes)
 
 #Copiamos url para descargar el json barrios
 
@@ -44,9 +43,22 @@ datos_barrios=respuesta.json()
 
 df_barrios = pd.json_normalize(datos_barrios)
 
-print(df_barrios)
 
-#Copiamos url para descargar el json cargadores electricos
+
+#Copiamos url para descargar el json Transporte
+
+URL= 'https://valencia.opendatasoft.com/explore/dataset/transporte-barrios/download/?format=json&timezone=Europe/Madrid&lang=es'
+
+#Obtenemos json Transporte y transformamos a datafarme
+
+respuesta = requests.get(url=URL)
+
+datos_transporte=respuesta.json()
+
+df_transporte = pd.json_normalize(datos_transporte)
+
+
+'''#Copiamos url para descargar el json cargadores electricos
 
 URL= 'https://valencia.opendatasoft.com/explore/dataset/carregadors-vehicles-electrics-cargadores-vehiculos-electricos/download/?format=json&timezone=Europe/Berlin&lang=es'
 
@@ -56,7 +68,7 @@ respuesta = requests.get(url=URL)
 
 datos_cargadores=respuesta.json()
 
-df_cargadores = pd.json_normalize(datos_cargadores)
+df_cargadores = pd.json_normalize(datos_cargadores)'''
 
 #CONEXION A POSTGREESQL
 
@@ -96,7 +108,18 @@ cursor.execute(
   """
 )
 
-#Crear tabla cargadores electricos
+#Crear tabla Transporte
+cursor.execute(
+  """
+    CREATE TABLE IF NOT EXISTS Transporte(
+    nombre varchar(50),
+    coddistrit integer);
+    
+  """
+) 
+
+
+'''#Crear tabla cargadores electricos
 cursor.execute(
   """
     CREATE TABLE IF NOT EXISTS cargadores(
@@ -105,7 +128,7 @@ cursor.execute(
     
   """
 )
-
+'''
 #Insertar datos en tabla hospitales
 for i in range(len(df_hospitales)):  
 
@@ -131,10 +154,25 @@ for i in range(len(df_barrios)):
   cursor.execute(postgres_insert_query, record_to_insert1)
 connection.commit()
 
-#Insertar datos en tabla cargadores electricos
+#Insertar datos en tabla Transporte
+for i in range(len(df_transporte)):  
+
+  postgres_insert_query = """ INSERT INTO Transporte (nombre,coddistrit) VALUES (%s,%s)"""
+  record_to_insert1 = (df_transporte['fields.nombre'][i],df_transporte['fields.coddistrit'][i])
+  cursor.execute(postgres_insert_query, record_to_insert1)
+connection.commit()
+
+
+
+
+
+
+
+
+'''#Insertar datos en tabla cargadores electricos
 for i in range(len(df_cargadores)):  
 
   postgres_insert_query = """ INSERT INTO cargadores (datasetid,distrito) VALUES (%s,%s)"""
   record_to_insert = (df_cargadores['datasetid'][i],df_cargadores['fields.distrito'][i])
   cursor.execute(postgres_insert_query, record_to_insert)
-connection.commit()
+connection.commit()'''
