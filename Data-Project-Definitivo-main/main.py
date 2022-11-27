@@ -17,7 +17,6 @@ datos=respuesta.json()
 
 df_hospitales = pd.json_normalize(datos)
 
-
 #Copiamos url para descargar el json espacios verdes
 
 URL= 'https://valencia.opendatasoft.com/explore/dataset/espais-verds-espacios-verdes/download/?format=json&timezone=Europe/Berlin&lang=es'
@@ -29,7 +28,6 @@ respuesta = requests.get(url=URL)
 datos_espaciosverdes=respuesta.json()
 
 df_espacios_verdes = pd.json_normalize(datos_espaciosverdes)
-
 
 #Copiamos url para descargar el json barrios
 
@@ -43,8 +41,6 @@ datos_barrios=respuesta.json()
 
 df_barrios = pd.json_normalize(datos_barrios)
 
-
-
 #Copiamos url para descargar el json Transporte
 
 URL= 'https://valencia.opendatasoft.com/explore/dataset/transporte-barrios/download/?format=json&timezone=Europe/Madrid&lang=es'
@@ -57,18 +53,10 @@ datos_transporte=respuesta.json()
 
 df_transporte = pd.json_normalize(datos_transporte)
 
+#LEER CSV SUPERFICIE
 
-'''#Copiamos url para descargar el json cargadores electricos
-
-URL= 'https://valencia.opendatasoft.com/explore/dataset/carregadors-vehicles-electrics-cargadores-vehiculos-electricos/download/?format=json&timezone=Europe/Berlin&lang=es'
-
-#Obtenemos json cargadores electricos y transformamos a datafarme
-
-respuesta = requests.get(url=URL)
-
-datos_cargadores=respuesta.json()
-
-df_cargadores = pd.json_normalize(datos_cargadores)'''
+df_superficie = pd.read_csv('Superficie.csv', sep=';')
+print(df_superficie)
 
 #CONEXION A POSTGREESQL
 
@@ -81,7 +69,7 @@ cursor.execute(
   """
     CREATE TABLE IF NOT EXISTS hospitales(
     nombre varchar(50),
-    coddistrit integer,
+    coddistrit varchar(50),
     x varchar(50),
     y varchar(50));
     
@@ -113,22 +101,21 @@ cursor.execute(
   """
     CREATE TABLE IF NOT EXISTS Transporte(
     nombre varchar(50),
-    coddistrit integer);
+    coddistrit varchar(50));
     
   """
 ) 
 
-
-'''#Crear tabla cargadores electricos
+#Crear tabla Superficie
 cursor.execute(
   """
-    CREATE TABLE IF NOT EXISTS cargadores(
-    datasetid varchar(100),
-    distrito integer);
+    CREATE TABLE IF NOT EXISTS Superficie(
+    coddistrit varchar(50),
+    superficie float);
     
   """
-)
-'''
+) 
+
 #Insertar datos en tabla hospitales
 for i in range(len(df_hospitales)):  
 
@@ -160,19 +147,10 @@ for i in range(len(df_transporte)):
   postgres_insert_query = """ INSERT INTO Transporte (nombre,coddistrit) VALUES (%s,%s)"""
   record_to_insert1 = (df_transporte['fields.nombre'][i],df_transporte['fields.coddistrit'][i])
   cursor.execute(postgres_insert_query, record_to_insert1)
+
+#Insertar datos en tabla Transporte
+for i in range(len(df_superficie)):
+  postgres_insert_query = """ INSERT INTO Superficie (coddistrit,superficie) VALUES (%s,%s)"""
+  record_to_insert1 = (str(df_superficie.iloc[i]['Coddistrit'])[:-2],df_superficie.iloc[i]['Superficie'])
+  cursor.execute(postgres_insert_query, record_to_insert1)
 connection.commit()
-
-
-
-
-
-
-
-
-'''#Insertar datos en tabla cargadores electricos
-for i in range(len(df_cargadores)):  
-
-  postgres_insert_query = """ INSERT INTO cargadores (datasetid,distrito) VALUES (%s,%s)"""
-  record_to_insert = (df_cargadores['datasetid'][i],df_cargadores['fields.distrito'][i])
-  cursor.execute(postgres_insert_query, record_to_insert)
-connection.commit()'''
