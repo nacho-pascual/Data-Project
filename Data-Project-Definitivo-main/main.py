@@ -81,7 +81,8 @@ cursor.execute(
   """
     CREATE TABLE IF NOT EXISTS espaciosverdes(
     nombre varchar(100),
-    barrio varchar(50));
+    barrio varchar(50),
+    st_area_shape float);
     
   """
 )
@@ -128,8 +129,8 @@ connection.commit()
 #Insertar datos en tabla espacios verdes
 for i in range(len(df_espacios_verdes)):  
 
-  postgres_insert_query = """ INSERT INTO espaciosverdes (nombre,barrio) VALUES (%s,%s)"""
-  record_to_insert = (df_espacios_verdes['fields.nombre'][i],df_espacios_verdes['fields.barrio'][i])
+  postgres_insert_query = """ INSERT INTO espaciosverdes (nombre,barrio,st_area_shape) VALUES (%s,%s,%s)"""
+  record_to_insert = (df_espacios_verdes['fields.nombre'][i],df_espacios_verdes['fields.barrio'][i],df_espacios_verdes['fields.st_area_shape'][i])
   cursor.execute(postgres_insert_query, record_to_insert)
 connection.commit()
 
