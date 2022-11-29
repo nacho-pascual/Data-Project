@@ -56,7 +56,10 @@ df_transporte = pd.json_normalize(datos_transporte)
 #LEER CSV SUPERFICIE
 
 df_superficie = pd.read_csv('Superficie.csv', sep=';')
-print(df_superficie)
+
+#LEER CSV LINK
+
+df_link = pd.read_csv('link.csv', sep=';')
 
 #CONEXION A POSTGREESQL
 
@@ -115,6 +118,16 @@ cursor.execute(
     superficie float);
     
   """
+)
+
+#Crear tabla Link
+cursor.execute(
+  """
+    CREATE TABLE IF NOT EXISTS link(
+    coddistrit varchar(50),
+    link varchar(100));
+    
+  """
 ) 
 
 #Insertar datos en tabla hospitales
@@ -123,8 +136,6 @@ for i in range(len(df_hospitales)):
   postgres_insert_query = """ INSERT INTO hospitales (nombre,coddistrit,x,y) VALUES (%s,%s,%s,%s)"""
   record_to_insert = (df_hospitales['fields.barrio'][i],df_hospitales['fields.coddistrit'][i],df_hospitales['fields.x'][i],df_hospitales['fields.y'][i])
   cursor.execute(postgres_insert_query, record_to_insert)
-connection.commit()
-
 
 #Insertar datos en tabla espacios verdes
 for i in range(len(df_espacios_verdes)):  
@@ -132,7 +143,6 @@ for i in range(len(df_espacios_verdes)):
   postgres_insert_query = """ INSERT INTO espaciosverdes (nombre,barrio,st_area_shape) VALUES (%s,%s,%s)"""
   record_to_insert = (df_espacios_verdes['fields.nombre'][i],df_espacios_verdes['fields.barrio'][i],df_espacios_verdes['fields.st_area_shape'][i])
   cursor.execute(postgres_insert_query, record_to_insert)
-connection.commit()
 
 #Insertar datos en tabla barrios
 for i in range(len(df_barrios)):  
@@ -140,7 +150,6 @@ for i in range(len(df_barrios)):
   postgres_insert_query = """ INSERT INTO barrios (nombre,barrio) VALUES (%s,%s)"""
   record_to_insert1 = (df_barrios['fields.nombre'][i],df_barrios['fields.coddistrit'][i])
   cursor.execute(postgres_insert_query, record_to_insert1)
-connection.commit()
 
 #Insertar datos en tabla Transporte
 for i in range(len(df_transporte)):  
@@ -154,4 +163,11 @@ for i in range(len(df_superficie)):
   postgres_insert_query = """ INSERT INTO Superficie (coddistrit,superficie) VALUES (%s,%s)"""
   record_to_insert1 = (str(df_superficie.iloc[i]['Coddistrit'])[:-2],df_superficie.iloc[i]['Superficie'])
   cursor.execute(postgres_insert_query, record_to_insert1)
+
+#Insertar datos en tabla Transporte
+for i in range(len(df_link)):
+  postgres_insert_query = """ INSERT INTO link (coddistrit,link) VALUES (%s,%s)"""
+  record_to_insert1 = (str(df_link.iloc[i]['coddistrit']),df_link.iloc[i]['link'])
+  cursor.execute(postgres_insert_query, record_to_insert1)
+  
 connection.commit()

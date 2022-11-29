@@ -4,6 +4,7 @@ FROM python:3.9.12
 
 COPY ./main.py /app/
 COPY ./Superficie.csv /app/
+COPY ./link.csv /app/
 COPY ./requirements.txt /app/
 
 WORKDIR /app/
