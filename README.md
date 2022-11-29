@@ -19,16 +19,18 @@ La calidad de la vivienda se medirá por ruido, hospitales, contaminación... te
 ### **Pasos a seguir para la realización del :**
 
   1. Construir nuestra imagen de python:
+  
     ```
     docker compose build
     ```
     
   2. Poner en marcha el docker compose con los 3 contenedores:
+  
     ```
     docker compose up
+    
     ```
-  
-  3. Entrar mediante el puerto de pg admin a comprobar la creación de las tablas(*Paso opcional pero más visual que hacerlo por comandos)
+  3. Video de la solucion:
   
   4. Accedemos al tableu desktop donde nos conectariamos a nuestra base de datos que acabamos de levantar y procederíamos a realizar la visualizacion. 
-    Para poder visualizarlo correctamente con la modificación que hemos realizado , hemos cargado la visualización en :
+     Para poder visualizarlo correctamente con la modificación que hemos realizado , hemos cargado la visualización en :
