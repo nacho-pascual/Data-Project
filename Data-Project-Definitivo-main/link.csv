@@ -1,20 +1,20 @@
-coddistrit;link;
-1;valencia/ciutat-vella;
-2;valencia/l-eixample;
-3;valencia/extramurs;
-4;valencia/campanar;
-5;valencia/la-saidia;
-6;valencia/el-pla-del-real;
-7;valencia/l-olivereta;
-8;valencia/patraix;
-9;valencia/jesus;
-10;valencia/quatre-carreres;
-11;valencia/poblats-maritims;
-12;valencia/camins-al-grau;
-13;valencia/algiros;
-14;valencia/benimaclet;
-15;valencia/rascanya;
-16;valencia/benicalap;
-17;valencia/valencia/pobles-del-nord;
-18;benimamet-valencia;
-19;valencia/valencia/pobles-del-sud;
+coddistrit;nombre_distrito;link
+1;Ciutat vella;valencia/ciutat-vella
+2;L'eixample;valencia/l-eixample
+3;Extramurs;valencia/extramurs
+4;Campanar;valencia/campanar
+5;La Saidia;valencia/la-saidia
+6;El pla del Real;valencia/el-pla-del-real
+7;L'Olivereta;valencia/l-olivereta
+8;Patraix;valencia/patraix
+9;Jesus;valencia/jesus
+10;Quatre Carreres;valencia/quatre-carreres
+11;Poblats Maritims;valencia/poblats-maritims
+12;Camins al Grau;valencia/camins-al-grau
+13;Algiros;valencia/algiros
+14;Benimaclet;valencia/benimaclet
+15;Rascanya;valencia/rascanya
+16;Benicalap;valencia/benicalap
+17;Pobles del Nord;valencia/valencia/pobles-del-nord
+18;Benimanet;benimamet-valencia
+19;Pobles del Sud;valencia/valencia/pobles-del-sud

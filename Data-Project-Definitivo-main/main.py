@@ -125,6 +125,7 @@ cursor.execute(
   """
     CREATE TABLE IF NOT EXISTS link(
     coddistrit varchar(50),
+    nombre_distrito varchar(100),
     link varchar(100));
     
   """
@@ -166,8 +167,8 @@ for i in range(len(df_superficie)):
 
 #Insertar datos en tabla Transporte
 for i in range(len(df_link)):
-  postgres_insert_query = """ INSERT INTO link (coddistrit,link) VALUES (%s,%s)"""
-  record_to_insert1 = (str(df_link.iloc[i]['coddistrit']),df_link.iloc[i]['link'])
+  postgres_insert_query = """ INSERT INTO link (coddistrit,nombre_distrito,link) VALUES (%s,%s,%s)"""
+  record_to_insert1 = (str(df_link.iloc[i]['coddistrit']),df_link.iloc[i]['nombre_distrito'],df_link.iloc[i]['link'])
   cursor.execute(postgres_insert_query, record_to_insert1)
   
 connection.commit()
