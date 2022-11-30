@@ -28,7 +28,8 @@ La calidad de la vivienda se medirá por ruido, hospitales, contaminación... te
   2. Poner en marcha el docker compose con los 3 contenedores:
   
     ```docker compose up```
-  3. Video de la solucion:
+    
+  3. Video de la solución: https://www.youtube.com/watch?v=dgCwk2O-OQ8
   
   4. Accedemos al tableu desktop donde nos conectariamos a nuestra base de datos que acabamos de levantar y procederíamos a realizar la visualizacion. 
-     Para poder visualizarlo correctamente con la modificación que hemos realizado , hemos cargado la visualización en :
+     Para poder visualizarlo correctamente con la modificación que hemos realizado , hemos cargado la visualización en :       https://public.tableau.com/app/profile/ivan4054/viz/Dataproject_16697517253130/MapadeValencia#1
