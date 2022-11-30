@@ -23,7 +23,7 @@ La calidad de la vivienda se medirá por ruido, hospitales, contaminación... te
 | Barrios | https://valencia.opendatasoft.com/explore/dataset/barris-barrios/table/ |
 | Hospitales | https://valencia.opendatasoft.com/explore/dataset/hospitales/table/ |
 | Espacios Verdes | https://valencia.opendatasoft.com/explore/dataset/espais-verds-espacios-verdes/table/ |
-| Paradas Transporte | https://valencia.opendatasoft.com/explore/dataset/transporte-barrios/table/|
+| Paradas Transporte Público| https://valencia.opendatasoft.com/explore/dataset/transporte-barrios/table/|
 
 
 
