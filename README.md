@@ -18,7 +18,7 @@ La calidad de la vivienda se medirá por ruido, hospitales, contaminación... te
 6. ```links.csv```: contiene los links a idealista que ligaremos a nuestro proyecto de visualizacion.
 
 
-### **Pasos a seguir para la realización del :**
+### **Pasos a seguir para la realización del ejercicio:**
 
 
   1. Construir nuestra imagen de python:
