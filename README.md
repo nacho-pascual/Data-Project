@@ -17,6 +17,15 @@ La calidad de la vivienda se medirá por ruido, hospitales, contaminación... te
 5. ```superficie.csv```: contiene las superficies por distrito de valencia para darte realismo a la visualización de datos.
 6. ```links.csv```: contiene los links a idealista que ligaremos a nuestro proyecto de visualizacion.
 
+### **Fuentes de datos utilizadas**:
+| Fuente de datos | Links | 
+| -- | -- |
+| Barrios | https://valencia.opendatasoft.com/explore/dataset/barris-barrios/table/ |
+| Hospitales | https://valencia.opendatasoft.com/explore/dataset/hospitales/table/ |
+| Espacios Verdes | https://valencia.opendatasoft.com/explore/dataset/espais-verds-espacios-verdes/table/ |
+| Paradas Transporte | https://valencia.opendatasoft.com/explore/dataset/transporte-barrios/table/|
+
+
 
 ### **Pasos a seguir para la realización del ejercicio:**
 
